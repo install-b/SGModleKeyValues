@@ -1,15 +1,18 @@
 PODS:
   - MJExtension (3.0.13)
+  - SGModleKeyValues (1.0.0)
   - YYModel (1.0.4)
 
 DEPENDENCIES:
   - MJExtension
+  - SGModleKeyValues
   - YYModel
 
 SPEC CHECKSUMS:
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
+  SGModleKeyValues: 6807e27c5038c4d31fe013f7c243a6417fae90cb
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 59ecc593196b8de22700fa3355b5e8dd34c8fc36
+PODFILE CHECKSUM: 1668074353e85d1fa9bdab4a281a37b239f0da7a
 
 COCOAPODS: 1.1.1

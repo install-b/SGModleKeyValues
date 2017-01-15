@@ -7,8 +7,8 @@
 //
 
 #import "ViewController.h"
-#import "NSObject+ModelKeyValues.h"
 #import "SGSecondObject.h"
+#import <NSObject+ModelKeyValues.h>
 #import <MJExtension.h>
 #import <YYModel.h>
 

@@ -5,5 +5,5 @@ target 'SGModelKeyValuesDemo' do
  
  pod 'MJExtension'
  pod 'YYModel'
-
+ pod 'SGModleKeyValues'
 end
