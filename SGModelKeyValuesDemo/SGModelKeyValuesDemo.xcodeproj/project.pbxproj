@@ -1,0 +1,463 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5FD444C31E2B2B94005CC98A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD444C21E2B2B94005CC98A /* main.m */; };
+		5FD444C61E2B2B94005CC98A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD444C51E2B2B94005CC98A /* AppDelegate.m */; };
+		5FD444CC1E2B2B94005CC98A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FD444CA1E2B2B94005CC98A /* Main.storyboard */; };
+		5FD444CE1E2B2B94005CC98A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FD444CD1E2B2B94005CC98A /* Assets.xcassets */; };
+		5FD444D11E2B2B94005CC98A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FD444CF1E2B2B94005CC98A /* LaunchScreen.storyboard */; };
+		5FD444EB1E2B2CC9005CC98A /* NSObject+ClassKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD444E51E2B2CC9005CC98A /* NSObject+ClassKeys.m */; };
+		5FD444EC1E2B2CC9005CC98A /* NSObject+ModelKeyValues.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD444E71E2B2CC9005CC98A /* NSObject+ModelKeyValues.m */; };
+		5FD444ED1E2B2CC9005CC98A /* NSObject+SGCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD444E91E2B2CC9005CC98A /* NSObject+SGCoding.m */; };
+		5FD444EE1E2B2CC9005CC98A /* NSString+SGULLValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD444EA1E2B2CC9005CC98A /* NSString+SGULLValue.m */; };
+		5FD444F81E2B2D90005CC98A /* SGFirstObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD444F11E2B2D90005CC98A /* SGFirstObject.m */; };
+		5FD444F91E2B2D90005CC98A /* SGObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD444F31E2B2D90005CC98A /* SGObject.m */; };
+		5FD444FA1E2B2D90005CC98A /* SGSecondObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD444F51E2B2D90005CC98A /* SGSecondObject.m */; };
+		5FD444FB1E2B2D90005CC98A /* SGSubObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD444F71E2B2D90005CC98A /* SGSubObject.m */; };
+		5FD444FF1E2B2DD7005CC98A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD444FE1E2B2DD7005CC98A /* ViewController.m */; };
+		73DCE13CE81D751B7275D567 /* libPods-SGModelKeyValuesDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CCE7DA38101FEFF531B1698 /* libPods-SGModelKeyValuesDemo.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0CCE7DA38101FEFF531B1698 /* libPods-SGModelKeyValuesDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SGModelKeyValuesDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FD444BE1E2B2B94005CC98A /* SGModelKeyValuesDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SGModelKeyValuesDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FD444C21E2B2B94005CC98A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5FD444C41E2B2B94005CC98A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		5FD444C51E2B2B94005CC98A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		5FD444CB1E2B2B94005CC98A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5FD444CD1E2B2B94005CC98A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5FD444D01E2B2B94005CC98A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5FD444D21E2B2B94005CC98A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5FD444E41E2B2CC9005CC98A /* NSObject+ClassKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+ClassKeys.h"; path = "../../SGModelKeyValues/NSObject+ClassKeys.h"; sourceTree = "<group>"; };
+		5FD444E51E2B2CC9005CC98A /* NSObject+ClassKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+ClassKeys.m"; path = "../../SGModelKeyValues/NSObject+ClassKeys.m"; sourceTree = "<group>"; };
+		5FD444E61E2B2CC9005CC98A /* NSObject+ModelKeyValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+ModelKeyValues.h"; path = "../../SGModelKeyValues/NSObject+ModelKeyValues.h"; sourceTree = "<group>"; };
+		5FD444E71E2B2CC9005CC98A /* NSObject+ModelKeyValues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+ModelKeyValues.m"; path = "../../SGModelKeyValues/NSObject+ModelKeyValues.m"; sourceTree = "<group>"; };
+		5FD444E81E2B2CC9005CC98A /* NSObject+SGCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+SGCoding.h"; path = "../../SGModelKeyValues/NSObject+SGCoding.h"; sourceTree = "<group>"; };
+		5FD444E91E2B2CC9005CC98A /* NSObject+SGCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+SGCoding.m"; path = "../../SGModelKeyValues/NSObject+SGCoding.m"; sourceTree = "<group>"; };
+		5FD444EA1E2B2CC9005CC98A /* NSString+SGULLValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+SGULLValue.m"; path = "../../SGModelKeyValues/NSString+SGULLValue.m"; sourceTree = "<group>"; };
+		5FD444F01E2B2D90005CC98A /* SGFirstObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGFirstObject.h; sourceTree = "<group>"; };
+		5FD444F11E2B2D90005CC98A /* SGFirstObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGFirstObject.m; sourceTree = "<group>"; };
+		5FD444F21E2B2D90005CC98A /* SGObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGObject.h; sourceTree = "<group>"; };
+		5FD444F31E2B2D90005CC98A /* SGObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGObject.m; sourceTree = "<group>"; };
+		5FD444F41E2B2D90005CC98A /* SGSecondObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGSecondObject.h; sourceTree = "<group>"; };
+		5FD444F51E2B2D90005CC98A /* SGSecondObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGSecondObject.m; sourceTree = "<group>"; };
+		5FD444F61E2B2D90005CC98A /* SGSubObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGSubObject.h; sourceTree = "<group>"; };
+		5FD444F71E2B2D90005CC98A /* SGSubObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGSubObject.m; sourceTree = "<group>"; };
+		5FD444FD1E2B2DD7005CC98A /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		5FD444FE1E2B2DD7005CC98A /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		82D4DA70CAF847970751ED1B /* Pods-SGModelKeyValuesDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SGModelKeyValuesDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SGModelKeyValuesDemo/Pods-SGModelKeyValuesDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		C039D310667B470553CE10E1 /* Pods-SGModelKeyValuesDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SGModelKeyValuesDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-SGModelKeyValuesDemo/Pods-SGModelKeyValuesDemo.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5FD444BB1E2B2B94005CC98A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73DCE13CE81D751B7275D567 /* libPods-SGModelKeyValuesDemo.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5758662C07DEA6F0FD2D7214 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				82D4DA70CAF847970751ED1B /* Pods-SGModelKeyValuesDemo.debug.xcconfig */,
+				C039D310667B470553CE10E1 /* Pods-SGModelKeyValuesDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		5FD444B51E2B2B94005CC98A = {
+			isa = PBXGroup;
+			children = (
+				5FD444C01E2B2B94005CC98A /* SGModelKeyValuesDemo */,
+				5FD444BF1E2B2B94005CC98A /* Products */,
+				5758662C07DEA6F0FD2D7214 /* Pods */,
+				BC3AACC3678CB07C2A02DF0C /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		5FD444BF1E2B2B94005CC98A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5FD444BE1E2B2B94005CC98A /* SGModelKeyValuesDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5FD444C01E2B2B94005CC98A /* SGModelKeyValuesDemo */ = {
+			isa = PBXGroup;
+			children = (
+				5FD444FC1E2B2DC4005CC98A /* TestVc */,
+				5FD444EF1E2B2D90005CC98A /* Models */,
+				5FD444D81E2B2BB5005CC98A /* SGModeKeyValues */,
+				5FD444C11E2B2B94005CC98A /* Supporting Files */,
+			);
+			path = SGModelKeyValuesDemo;
+			sourceTree = "<group>";
+		};
+		5FD444C11E2B2B94005CC98A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5FD444C41E2B2B94005CC98A /* AppDelegate.h */,
+				5FD444C51E2B2B94005CC98A /* AppDelegate.m */,
+				5FD444CA1E2B2B94005CC98A /* Main.storyboard */,
+				5FD444CD1E2B2B94005CC98A /* Assets.xcassets */,
+				5FD444CF1E2B2B94005CC98A /* LaunchScreen.storyboard */,
+				5FD444D21E2B2B94005CC98A /* Info.plist */,
+				5FD444C21E2B2B94005CC98A /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5FD444D81E2B2BB5005CC98A /* SGModeKeyValues */ = {
+			isa = PBXGroup;
+			children = (
+				5FD444E41E2B2CC9005CC98A /* NSObject+ClassKeys.h */,
+				5FD444E51E2B2CC9005CC98A /* NSObject+ClassKeys.m */,
+				5FD444E61E2B2CC9005CC98A /* NSObject+ModelKeyValues.h */,
+				5FD444E71E2B2CC9005CC98A /* NSObject+ModelKeyValues.m */,
+				5FD444E81E2B2CC9005CC98A /* NSObject+SGCoding.h */,
+				5FD444E91E2B2CC9005CC98A /* NSObject+SGCoding.m */,
+				5FD444EA1E2B2CC9005CC98A /* NSString+SGULLValue.m */,
+			);
+			name = SGModeKeyValues;
+			sourceTree = "<group>";
+		};
+		5FD444EF1E2B2D90005CC98A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5FD444F01E2B2D90005CC98A /* SGFirstObject.h */,
+				5FD444F11E2B2D90005CC98A /* SGFirstObject.m */,
+				5FD444F21E2B2D90005CC98A /* SGObject.h */,
+				5FD444F31E2B2D90005CC98A /* SGObject.m */,
+				5FD444F41E2B2D90005CC98A /* SGSecondObject.h */,
+				5FD444F51E2B2D90005CC98A /* SGSecondObject.m */,
+				5FD444F61E2B2D90005CC98A /* SGSubObject.h */,
+				5FD444F71E2B2D90005CC98A /* SGSubObject.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5FD444FC1E2B2DC4005CC98A /* TestVc */ = {
+			isa = PBXGroup;
+			children = (
+				5FD444FD1E2B2DD7005CC98A /* ViewController.h */,
+				5FD444FE1E2B2DD7005CC98A /* ViewController.m */,
+			);
+			path = TestVc;
+			sourceTree = "<group>";
+		};
+		BC3AACC3678CB07C2A02DF0C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0CCE7DA38101FEFF531B1698 /* libPods-SGModelKeyValuesDemo.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5FD444BD1E2B2B94005CC98A /* SGModelKeyValuesDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5FD444D51E2B2B94005CC98A /* Build configuration list for PBXNativeTarget "SGModelKeyValuesDemo" */;
+			buildPhases = (
+				ED2E18D8AF1EE78453B27AEE /* [CP] Check Pods Manifest.lock */,
+				5FD444BA1E2B2B94005CC98A /* Sources */,
+				5FD444BB1E2B2B94005CC98A /* Frameworks */,
+				5FD444BC1E2B2B94005CC98A /* Resources */,
+				A812F2819A072BDB687EDBFD /* [CP] Embed Pods Frameworks */,
+				7D106CE92EC14A7FD5919CF7 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SGModelKeyValuesDemo;
+			productName = SGModelKeyValuesDemo;
+			productReference = 5FD444BE1E2B2B94005CC98A /* SGModelKeyValuesDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5FD444B61E2B2B94005CC98A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = HHLY;
+				TargetAttributes = {
+					5FD444BD1E2B2B94005CC98A = {
+						CreatedOnToolsVersion = 8.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 5FD444B91E2B2B94005CC98A /* Build configuration list for PBXProject "SGModelKeyValuesDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5FD444B51E2B2B94005CC98A;
+			productRefGroup = 5FD444BF1E2B2B94005CC98A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5FD444BD1E2B2B94005CC98A /* SGModelKeyValuesDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5FD444BC1E2B2B94005CC98A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5FD444D11E2B2B94005CC98A /* LaunchScreen.storyboard in Resources */,
+				5FD444CE1E2B2B94005CC98A /* Assets.xcassets in Resources */,
+				5FD444CC1E2B2B94005CC98A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7D106CE92EC14A7FD5919CF7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SGModelKeyValuesDemo/Pods-SGModelKeyValuesDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A812F2819A072BDB687EDBFD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SGModelKeyValuesDemo/Pods-SGModelKeyValuesDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ED2E18D8AF1EE78453B27AEE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5FD444BA1E2B2B94005CC98A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5FD444FA1E2B2D90005CC98A /* SGSecondObject.m in Sources */,
+				5FD444EB1E2B2CC9005CC98A /* NSObject+ClassKeys.m in Sources */,
+				5FD444EE1E2B2CC9005CC98A /* NSString+SGULLValue.m in Sources */,
+				5FD444F91E2B2D90005CC98A /* SGObject.m in Sources */,
+				5FD444F81E2B2D90005CC98A /* SGFirstObject.m in Sources */,
+				5FD444FF1E2B2DD7005CC98A /* ViewController.m in Sources */,
+				5FD444C61E2B2B94005CC98A /* AppDelegate.m in Sources */,
+				5FD444EC1E2B2CC9005CC98A /* NSObject+ModelKeyValues.m in Sources */,
+				5FD444FB1E2B2D90005CC98A /* SGSubObject.m in Sources */,
+				5FD444C31E2B2B94005CC98A /* main.m in Sources */,
+				5FD444ED1E2B2CC9005CC98A /* NSObject+SGCoding.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		5FD444CA1E2B2B94005CC98A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5FD444CB1E2B2B94005CC98A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		5FD444CF1E2B2B94005CC98A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5FD444D01E2B2B94005CC98A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5FD444D31E2B2B94005CC98A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5FD444D41E2B2B94005CC98A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5FD444D61E2B2B94005CC98A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 82D4DA70CAF847970751ED1B /* Pods-SGModelKeyValuesDemo.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = SGModelKeyValuesDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.13322.SGModelKeyValuesDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5FD444D71E2B2B94005CC98A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C039D310667B470553CE10E1 /* Pods-SGModelKeyValuesDemo.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = SGModelKeyValuesDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.13322.SGModelKeyValuesDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5FD444B91E2B2B94005CC98A /* Build configuration list for PBXProject "SGModelKeyValuesDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5FD444D31E2B2B94005CC98A /* Debug */,
+				5FD444D41E2B2B94005CC98A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5FD444D51E2B2B94005CC98A /* Build configuration list for PBXNativeTarget "SGModelKeyValuesDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5FD444D61E2B2B94005CC98A /* Debug */,
+				5FD444D71E2B2B94005CC98A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5FD444B61E2B2B94005CC98A /* Project object */;
+}
