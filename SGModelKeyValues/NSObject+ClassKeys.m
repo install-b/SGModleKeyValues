@@ -60,6 +60,8 @@
                 // 2. 添加到列表
                 [allKeys addObject:ivarName];
             }
+            // 释放内存
+            free(ivars);
         }
         // 获取父类class
         cls = class_getSuperclass(cls);
