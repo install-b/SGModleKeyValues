@@ -28,7 +28,17 @@
         if (!value) return;
         value = [value sg_keyValues];
         
-        [encoder encodeObject:value forKey:key];
+        @try {
+            [encoder encodeObject:value forKey:key];
+        } @catch (NSException *exception) {
+#ifdef DEBUG
+            NSLog(@"%@属性%@不支持%@归档",NSStringFromClass(self.class),key,value);
+#endif
+        } @finally {
+            
+        }
+       
+        
     }];
 }
 
@@ -46,7 +56,17 @@
         id value = [decoder decodeObjectForKey:key];
         if (!value) return ;
         
-        [self setValue:value forKey:key];
+        // 安全解档
+        @try {
+            [self setValue:value forKey:key];
+        } @catch (NSException *exception) {
+#ifdef DEBUG
+            NSLog(@"%@属性%@不支持%@解档",NSStringFromClass(self.class),key,value);
+#endif
+        } @finally {
+            
+        }
+        
     }];
 }
 

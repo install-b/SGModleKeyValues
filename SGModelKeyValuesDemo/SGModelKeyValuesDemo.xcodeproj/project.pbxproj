@@ -15,12 +15,13 @@
 		5FD444EB1E2B2CC9005CC98A /* NSObject+ClassKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD444E51E2B2CC9005CC98A /* NSObject+ClassKeys.m */; };
 		5FD444EC1E2B2CC9005CC98A /* NSObject+ModelKeyValues.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD444E71E2B2CC9005CC98A /* NSObject+ModelKeyValues.m */; };
 		5FD444ED1E2B2CC9005CC98A /* NSObject+SGCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD444E91E2B2CC9005CC98A /* NSObject+SGCoding.m */; };
-		5FD444EE1E2B2CC9005CC98A /* NSString+SGULLValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD444EA1E2B2CC9005CC98A /* NSString+SGULLValue.m */; };
 		5FD444F81E2B2D90005CC98A /* SGFirstObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD444F11E2B2D90005CC98A /* SGFirstObject.m */; };
 		5FD444F91E2B2D90005CC98A /* SGObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD444F31E2B2D90005CC98A /* SGObject.m */; };
 		5FD444FA1E2B2D90005CC98A /* SGSecondObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD444F51E2B2D90005CC98A /* SGSecondObject.m */; };
 		5FD444FB1E2B2D90005CC98A /* SGSubObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD444F71E2B2D90005CC98A /* SGSubObject.m */; };
 		5FD444FF1E2B2DD7005CC98A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD444FE1E2B2DD7005CC98A /* ViewController.m */; };
+		5FE147231E71127F0013FF43 /* NSObject+SGProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FE147201E71127F0013FF43 /* NSObject+SGProperty.m */; };
+		5FE147241E71127F0013FF43 /* NSString+StructValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FE147221E71127F0013FF43 /* NSString+StructValue.m */; };
 		73DCE13CE81D751B7275D567 /* libPods-SGModelKeyValuesDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CCE7DA38101FEFF531B1698 /* libPods-SGModelKeyValuesDemo.a */; };
 /* End PBXBuildFile section */
 
@@ -40,7 +41,6 @@
 		5FD444E71E2B2CC9005CC98A /* NSObject+ModelKeyValues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+ModelKeyValues.m"; path = "../../SGModelKeyValues/NSObject+ModelKeyValues.m"; sourceTree = "<group>"; };
 		5FD444E81E2B2CC9005CC98A /* NSObject+SGCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+SGCoding.h"; path = "../../SGModelKeyValues/NSObject+SGCoding.h"; sourceTree = "<group>"; };
 		5FD444E91E2B2CC9005CC98A /* NSObject+SGCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+SGCoding.m"; path = "../../SGModelKeyValues/NSObject+SGCoding.m"; sourceTree = "<group>"; };
-		5FD444EA1E2B2CC9005CC98A /* NSString+SGULLValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+SGULLValue.m"; path = "../../SGModelKeyValues/NSString+SGULLValue.m"; sourceTree = "<group>"; };
 		5FD444F01E2B2D90005CC98A /* SGFirstObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGFirstObject.h; sourceTree = "<group>"; };
 		5FD444F11E2B2D90005CC98A /* SGFirstObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGFirstObject.m; sourceTree = "<group>"; };
 		5FD444F21E2B2D90005CC98A /* SGObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGObject.h; sourceTree = "<group>"; };
@@ -51,6 +51,10 @@
 		5FD444F71E2B2D90005CC98A /* SGSubObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGSubObject.m; sourceTree = "<group>"; };
 		5FD444FD1E2B2DD7005CC98A /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		5FD444FE1E2B2DD7005CC98A /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		5FE1471F1E71127F0013FF43 /* NSObject+SGProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SGProperty.h"; sourceTree = "<group>"; };
+		5FE147201E71127F0013FF43 /* NSObject+SGProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SGProperty.m"; sourceTree = "<group>"; };
+		5FE147211E71127F0013FF43 /* NSString+StructValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+StructValue.h"; sourceTree = "<group>"; };
+		5FE147221E71127F0013FF43 /* NSString+StructValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+StructValue.m"; sourceTree = "<group>"; };
 		82D4DA70CAF847970751ED1B /* Pods-SGModelKeyValuesDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SGModelKeyValuesDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SGModelKeyValuesDemo/Pods-SGModelKeyValuesDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		C039D310667B470553CE10E1 /* Pods-SGModelKeyValuesDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SGModelKeyValuesDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-SGModelKeyValuesDemo/Pods-SGModelKeyValuesDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -128,7 +132,10 @@
 				5FD444E71E2B2CC9005CC98A /* NSObject+ModelKeyValues.m */,
 				5FD444E81E2B2CC9005CC98A /* NSObject+SGCoding.h */,
 				5FD444E91E2B2CC9005CC98A /* NSObject+SGCoding.m */,
-				5FD444EA1E2B2CC9005CC98A /* NSString+SGULLValue.m */,
+				5FE1471F1E71127F0013FF43 /* NSObject+SGProperty.h */,
+				5FE147201E71127F0013FF43 /* NSObject+SGProperty.m */,
+				5FE147211E71127F0013FF43 /* NSString+StructValue.h */,
+				5FE147221E71127F0013FF43 /* NSString+StructValue.m */,
 			);
 			name = SGModeKeyValues;
 			sourceTree = "<group>";
@@ -289,11 +296,12 @@
 			files = (
 				5FD444FA1E2B2D90005CC98A /* SGSecondObject.m in Sources */,
 				5FD444EB1E2B2CC9005CC98A /* NSObject+ClassKeys.m in Sources */,
-				5FD444EE1E2B2CC9005CC98A /* NSString+SGULLValue.m in Sources */,
+				5FE147241E71127F0013FF43 /* NSString+StructValue.m in Sources */,
 				5FD444F91E2B2D90005CC98A /* SGObject.m in Sources */,
 				5FD444F81E2B2D90005CC98A /* SGFirstObject.m in Sources */,
 				5FD444FF1E2B2DD7005CC98A /* ViewController.m in Sources */,
 				5FD444C61E2B2B94005CC98A /* AppDelegate.m in Sources */,
+				5FE147231E71127F0013FF43 /* NSObject+SGProperty.m in Sources */,
 				5FD444EC1E2B2CC9005CC98A /* NSObject+ModelKeyValues.m in Sources */,
 				5FD444FB1E2B2D90005CC98A /* SGSubObject.m in Sources */,
 				5FD444C31E2B2B94005CC98A /* main.m in Sources */,
@@ -456,6 +464,7 @@
 				5FD444D71E2B2B94005CC98A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

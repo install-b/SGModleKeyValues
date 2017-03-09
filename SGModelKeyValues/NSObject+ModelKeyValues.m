@@ -8,13 +8,16 @@
 
 #import "NSObject+ModelKeyValues.h"
 #import "NSObject+ClassKeys.h"
+#import "NSObject+SGProperty.h"
+#import "NSString+StructValue.h"
 #import <objc/message.h>
 
 // 映射字典关联的key值
 static NSString * const sg_ModelClassForIvarNameMapDict = @"sg_ModelClassForIvarNameMapDict";
 static NSString * const sg_DictKeyForIvarNameMapDict = @"sg_DictKeyForIvarNameMapDict";
 
-@implementation NSObject (ModelKeyValues)
+@implementation NSObject (SGExtention)
+static  BOOL isCahe ;
 #pragma mark - 字典转模型
 /** 核心方法 */
 + (instancetype)sg_objectWithKeyValue:(NSDictionary *)keyValue {
@@ -28,7 +31,7 @@ static NSString * const sg_DictKeyForIvarNameMapDict = @"sg_DictKeyForIvarNameMa
         ) {
         return nil;
     }
-
+    
     // 1. 数组校验
     if ([keyValue isKindOfClass:[NSArray class]]) {
         return  [self sg_objectArrayFromKeyValues:keyValue];
@@ -48,7 +51,7 @@ static NSString * const sg_DictKeyForIvarNameMapDict = @"sg_DictKeyForIvarNameMa
     
     // 4. 属性赋值
     [self sg_enumerateAllKeysUsingBlock:^(NSString *key, BOOL *stop) {
-
+        
         // 1. key值处理 去除下滑线
         NSString * key_ = nil;
         if ([key hasPrefix:@"_"]) { // “_”下划线处理
@@ -70,7 +73,7 @@ static NSString * const sg_DictKeyForIvarNameMapDict = @"sg_DictKeyForIvarNameMa
         if (!value) {
             return;
         }
-    
+        
         // 5. 判断是否是二级模型  获取到二级模型class 调用sg_objectWithKeyValues:方法 （二级模型映射字典）
         Class subClass = [self getClassWithIvarName:key] ? : [self getClassWithIvarName:key_];
         if (subClass) {
@@ -83,17 +86,31 @@ static NSString * const sg_DictKeyForIvarNameMapDict = @"sg_DictKeyForIvarNameMa
             !subObject ? : [object setValue:subObject forKey:key]; // 递归转模型
             return;
         }
-        
+        // 空对象校验
+        if ([value isKindOfClass:[NSNull class]]) {
+            return;
+        }
         // 6. 不是二级模型
         // 6.1 数字类型转化为string类型
         if ([value isKindOfClass:[NSNumber class]]) {
             value = [NSString stringWithFormat:@"%@",value];
         }
-       
-    
-        // 6.2 赋值
-        [object setValue:value forKey:key];
         
+        // 6.2 赋值 更加安全赋值
+        isCahe = NO;
+        @try {
+            [object setValue:value forKey:key];
+        } @catch (NSException *exception) {
+#ifdef DEBUG
+            NSLog(@"kvc不支持这样赋值 -[%@ setValue:%@ forKey:%@]\nexception:%@",NSStringFromClass(self),value,key_,exception);
+#endif
+            isCahe = YES;
+        } @finally {
+            if (isCahe && [value isKindOfClass:[NSString class]]) {
+                id property = [(NSString *)value structValueWithName:[object sg_typeOfPropertyNamed:key_]];
+                if (property) [object setValue:property forKey:key];
+            }
+        }
     }];
     
     // 5. 返回模型
@@ -111,7 +128,7 @@ static NSString * const sg_DictKeyForIvarNameMapDict = @"sg_DictKeyForIvarNameMa
     if ([keyValues isKindOfClass:self]) {
         return @[keyValues];
     }
-
+    
     // 3、数组校验
     if (![keyValues isKindOfClass:[NSArray class]]) {
 #ifdef DEBUG // 调试报错处理
@@ -138,20 +155,22 @@ static NSString * const sg_DictKeyForIvarNameMapDict = @"sg_DictKeyForIvarNameMa
 - (id)sg_keyValuesWithIgnoreKey:(NSArray <NSString *> *)ignoreKeys {
     // 0. 校验基本数据类型
     if (
-        [self isKindOfClass:[NSValue class]] ||
+        //[self isKindOfClass:[NSValue class]] ||
         [self isKindOfClass:[NSString class]] ||
         [self isKindOfClass:[NSNumber class]] ||
         [self isKindOfClass:[NSData class]]
         ) {
         return self;
     }
-    
+    if ([self isKindOfClass:[NSValue class]]) {
+        return [NSString stringWithFormat:@"%@",self];
+    }
     id object;
     // 1、数组/集合
     if ([self isKindOfClass:[NSArray class]] || [self isKindOfClass:[NSSet class]]) {
         object = [NSMutableArray array];
         for (id obj in (NSArray *)self) {
-            [object addObject:[obj sg_keyValues]];
+            [object addObject:[obj sg_keyValuesWithIgnoreKey:ignoreKeys]];
         }
         
         return object;
@@ -169,9 +188,10 @@ static NSString * const sg_DictKeyForIvarNameMapDict = @"sg_DictKeyForIvarNameMa
                 [obj isKindOfClass:[NSNumber class]] ||
                 [obj isKindOfClass:[NSData class]]
                 ) {
+                
                 [object setObject:obj forKey:key];
             }else {
-                [object setObject:[obj sg_keyValues] forKey:key];
+                [object setObject:[obj sg_keyValuesWithIgnoreKey:ignoreKeys] forKey:key];
             }
         }];
         return object;
@@ -186,20 +206,34 @@ static NSString * const sg_DictKeyForIvarNameMapDict = @"sg_DictKeyForIvarNameMa
         }else {
             key_ = key;
         }
+        
         // 1.1 key值忽略处理
-        if ([ignoreKeys containsObject:key] || [ignoreKeys containsObject:key_]) {
-            return;
+        for (NSString *ignoreKey in ignoreKeys) {
+            if([ignoreKey isEqualToString:key] || [ignoreKey isEqualToString:key_]){
+                
+                return;
+            }
         }
         
-        // 2.获取对象的value
-        id value = [self valueForKey:key];
+        // 2. 安全地获取对象的value
+        id value = nil;
+        @try {
+            value = [self valueForKey:key];
+        } @catch (NSException *exception) {
+#ifdef DEBUG
+            NSLog(@"该属性 %@ 暂不支持valueForKey:\nuserInfo:%@",key_,exception);
+#endif
+        } @finally {
+            
+        }
+        
         
         // 3.字典空值校验
         if (!value) {
             return;
         }
         // 将子目录转化为字典数组
-        value = [value sg_keyValues];
+        value = [value sg_keyValuesWithIgnoreKey:ignoreKeys];
         
         // 4. 获取字典中value的key 与对象名称对应关系 对象的key与属性不一样（如：字典为id 模型为：ID） 映射字典 （属性名称与字典key值映射）
         NSString *mapKey = [self.class getKeyMapWithIvarName:key] ? : [self.class getKeyMapWithIvarName:key_];
@@ -209,23 +243,26 @@ static NSString * const sg_DictKeyForIvarNameMapDict = @"sg_DictKeyForIvarNameMa
         Class subClass = [self.class getClassWithIvarName:key] ? : [self.class getClassWithIvarName:key_];
         
         if (subClass) {
-            id subObject = [value sg_keyValues];
+            id subObject = [value sg_keyValuesWithIgnoreKey:ignoreKeys];
             !subObject ? : [object setValue:subObject forKey:dictValueKey]; // 递归转模型
             return;
         }
-        // 6. 不是二级模型
-        if ([value isKindOfClass:[NSNumber class]]) {
+        // 空对象校验
+        if ([value isKindOfClass:[NSNull class]]) {
+            return;
+        }
+        // 6. 不是二级模型 Number Value 类型转成字符串
+        if ([value isKindOfClass:[NSNumber class]] || [value isKindOfClass:[NSValue class]]) {
             value = [NSString stringWithFormat:@"%@",value];
         }
         // 赋值
         [object setValue:value forKey:dictValueKey];
-        
     }];
     
     // 返回字典
     return object;
-    
 }
+
 #pragma mark - 转换为JSON
 - (NSString *)sg_JSONString {
     if ([self isKindOfClass:[NSString class]]) {
@@ -243,15 +280,20 @@ static NSString * const sg_DictKeyForIvarNameMapDict = @"sg_DictKeyForIvarNameMa
     } else if ([self isKindOfClass:[NSData class]]) {
         return (NSData *)self;
     }
-    return [NSJSONSerialization dataWithJSONObject:[self sg_keyValues] options:kNilOptions error:nil];
+    id keyValues = [self sg_keyValues];
+    return [NSJSONSerialization dataWithJSONObject:keyValues options:kNilOptions error:nil];
 }
 
 - (id)sg_JSONDictionary {
     
     if ([self isKindOfClass:[NSString class]]) {
-        return  [NSJSONSerialization JSONObjectWithData:[((NSString *)self) dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:nil];
+        NSError *error = nil;
+        id dictionary = [NSJSONSerialization JSONObjectWithData:[((NSString *)self) dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        return error ? self : dictionary;
     }else if ([self isKindOfClass:[NSData class]]) {
-        return [NSJSONSerialization JSONObjectWithData:(NSData *)self options:kNilOptions error:nil];
+        NSError *error = nil;
+        id dictionary =  [NSJSONSerialization JSONObjectWithData:(NSData *)self options:kNilOptions error:&error];
+        return error ? self : dictionary;
     }
     
     return [self sg_keyValues];
