@@ -28,13 +28,15 @@
     Class cls = self;
     // 校验foundation 类
     if (cls == [NSSet class] ||
-        cls == [NSArray class] ||
         cls == [NSValue class] ||
+        cls == [NSArray class] ||
         cls == [NSObject class] ||
         cls == [NSNumber class] ||
+        cls == [NSString class] ||
         cls == [NSMutableSet class] ||
         cls == [NSDictionary class] ||
         cls == [NSMutableArray class] ||
+        cls == [NSMutableString class] ||
         cls == [NSMutableDictionary class]
         ) {
         return nil;
