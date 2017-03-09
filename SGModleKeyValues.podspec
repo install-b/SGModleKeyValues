@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "SGModleKeyValues"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.summary      = "A runtime dictionary transfer to model and model transfer to dictionary"
 
   # This description is used to generate tags and improve search results.
@@ -81,7 +81,7 @@ SGModleKeyValues is a quick round of model and dictionary transfer tools
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/install-b/SGModleKeyValues.git", :tag => "1.0.0" }
+  s.source       = { :git => "https://github.com/install-b/SGModleKeyValues.git", :tag => "1.0.1" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
