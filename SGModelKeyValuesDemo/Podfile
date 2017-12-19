@@ -5,6 +5,6 @@ target 'SGModelKeyValuesDemo' do
  
 pod 'MJExtension', '~> 3.0.13'
 pod 'YYModel', '~> 1.0.4'
-#pod 'SGModleKeyValues', '~> 3.0.13'
+pod 'SGModleKeyValues', '~> 1.1.0'
 
 end
