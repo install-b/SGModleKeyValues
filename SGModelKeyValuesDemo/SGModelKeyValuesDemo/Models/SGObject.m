@@ -11,12 +11,16 @@
 #import <MJExtension.h>
 
 @implementation SGObject
-#pragma MARK - SG 建立映射关系
-+ (void)initialize {
-    [self sg_setKeyForIvarNameMapDict:@{@"petdog" : @"dog"}];
-    
-    [self sg_setModelClassForIvarNameMapDict:@{@"petdog" : [SGSubObject class]}];
+#pragma mark - SG 建立映射关系
++ (NSDictionary *)sg_getDictionarrayKeyForIvarNameMapDict {
+    return  @{@"petdog" : @"dog"};
 }
+
++ (NSDictionary *)sg_getModelClassForIvarNameMapDict {
+    return @{@"petdog" : [SGSubObject class]};
+}
+
+
 #pragma mark - MJ 建立映射关系
 + (NSDictionary *)mj_objectClassInArray {
     return @{@"petdog" : [SGSubObject class]};
@@ -25,6 +29,7 @@
 + (NSDictionary *)mj_replacedKeyFromPropertyName {
     return @{@"petdog" : @"dog"};
 }
+
 #pragma mark - YY 建立映射关系
 + (nullable NSDictionary<NSString *, id> *)modelCustomPropertyMapper {
     return @{@"petdog" : @"dog"};

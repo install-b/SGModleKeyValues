@@ -12,12 +12,31 @@
 #import "NSString+StructValue.h"
 #import <objc/message.h>
 
-// 映射字典关联的key值
-static NSString * const sg_ModelClassForIvarNameMapDict = @"sg_ModelClassForIvarNameMapDict";
-static NSString * const sg_DictKeyForIvarNameMapDict = @"sg_DictKeyForIvarNameMapDict";
 
+/**
+ NSDictionary
+ */
+@implementation NSDictionary (SGExtention)
+// 获取class映射
+- (Class)sg_classForKey:(NSString *)key {
+    if (![self isKindOfClass:[NSDictionary class]]) {
+        return nil;
+    }
+    id className =  self[key];
+    if (![className isKindOfClass:[NSString class]]) {
+        return className;
+    }
+    return  NSClassFromString(className);
+}
+
+@end
+
+
+/**
+ NSObjec
+ */
 @implementation NSObject (SGExtention)
-static  BOOL isCahe ;
+
 #pragma mark - 字典转模型
 /** 核心方法 */
 + (instancetype)sg_objectWithKeyValue:(NSDictionary *)keyValue {
@@ -49,25 +68,29 @@ static  BOOL isCahe ;
     // 3. 创建模型
     id object = [[self alloc] init];
     
+    // 获取映射字典
+    NSDictionary * keyMap   = [self sg_getDictionarrayKeyForIvarNameMapDict];
+    NSDictionary * classMap = [self sg_getModelClassForIvarNameMapDict];
+    
     // 4. 属性赋值
-    [self sg_enumerateAllKeysUsingBlock:^(NSString *key, BOOL *stop) {
+    [self sg_enumerateAllKeysUsingBlock:^(NSString *_key, BOOL *stop) {
         
         // 1. key值处理 去除下滑线
-        NSString * key_ = nil;
-        if ([key hasPrefix:@"_"]) { // “_”下划线处理
-            key_ = [key substringFromIndex:1];
+        NSString * key = nil;
+        if ([_key hasPrefix:@"_"]) { // “_”下划线处理
+            key = [_key substringFromIndex:1];
         }else {
-            key_ = key;
+            key = _key;
         }
         
         // 2. 获取字典中value的key 与对象名称对应关系 对象的key与属性不一样（如：字典为id 模型为：ID） 映射字典 （属性名称与字典key值映射）
         // 2.1 获取映射值
-        NSString *mapKey = [self getKeyMapWithIvarName:key] ? : [self getKeyMapWithIvarName:key_];
+        NSString *mapKey = keyMap[_key] ? : keyMap[key];
         // 2.2 获取字典key
-        NSString *dictValueKey = mapKey ? : key;
+        NSString *dictValueKey = mapKey ? : _key;
         
         // 3.获取字典的value //  去掉下划线的key
-        id value = keyValue[dictValueKey] ? : keyValue[key_];
+        id value = keyValue[dictValueKey] ? : keyValue[key];
         
         // 4.字典空值校验
         if (!value) {
@@ -75,7 +98,8 @@ static  BOOL isCahe ;
         }
         
         // 5. 判断是否是二级模型  获取到二级模型class 调用sg_objectWithKeyValues:方法 （二级模型映射字典）
-        Class subClass = [self getClassWithIvarName:key] ? : [self getClassWithIvarName:key_];
+        //Class subClass = [self getClassWithIvarName:key] ? : [self getClassWithIvarName:key_];
+        Class subClass = [classMap sg_classForKey:_key] ? :  [classMap sg_classForKey:key];
         if (subClass) {
             id subObject = nil;
             if ([value isKindOfClass:[NSArray class]]) {
@@ -83,7 +107,7 @@ static  BOOL isCahe ;
             }else if ([value isKindOfClass:[NSDictionary class]]) {
                 subObject = [subClass sg_objectWithKeyValue:value];
             }
-            !subObject ? : [object setValue:subObject forKey:key]; // 递归转模型
+            !subObject ? : [object setValue:subObject forKey:_key]; // 递归转模型
             return;
         }
         // 空对象校验
@@ -97,18 +121,19 @@ static  BOOL isCahe ;
         }
         
         // 6.2 赋值 更加安全赋值
-        isCahe = NO;
+        static  BOOL isException;
+        isException = NO;
         @try {
-            [object setValue:value forKey:key];
+            [object setValue:value forKey:_key];
         } @catch (NSException *exception) {
 #ifdef DEBUG
-            NSLog(@"kvc不支持这样赋值 -[%@ setValue:%@ forKey:%@]\nexception:%@",NSStringFromClass(self),value,key_,exception);
+            NSLog(@"kvc不支持这样赋值 -[%@ setValue:%@ forKey:(%@)%@]\nexception:%@",NSStringFromClass(self),value,key,[object sg_typeOfPropertyNamed:key],exception);
 #endif
-            isCahe = YES;
+            isException = YES;
         } @finally {
-            if (isCahe && [value isKindOfClass:[NSString class]]) {
-                id property = [(NSString *)value structValueWithName:[object sg_typeOfPropertyNamed:key_]];
-                if (property) [object setValue:property forKey:key];
+            if (isException && [value isKindOfClass:[NSString class]]) {
+                id property = [(NSString *)value structValueWithName:[object sg_typeOfPropertyNamed:key]];
+                if (property) [object setValue:property forKey:_key];
             }
         }
     }];
@@ -119,6 +144,9 @@ static  BOOL isCahe ;
 
 // 字典数组转模型数组
 + (NSArray *)sg_objectArrayFromKeyValues:(id)keyValues {
+    if (!keyValues) {
+        return nil;
+    }
     // 1、字典校验
     if ([keyValues isKindOfClass:[NSDictionary class]]) {
         return @[[self sg_objectWithKeyValue:keyValues]];
@@ -197,19 +225,23 @@ static  BOOL isCahe ;
         return object;
     }
     
+    // 获取映射字典
+    NSDictionary * keyMap   = [self.class sg_getDictionarrayKeyForIvarNameMapDict];
+    NSDictionary * classMap = [self.class sg_getModelClassForIvarNameMapDict];
+    
     // 2.2 模型 --> 字典  获取模型属性列表
-    [self sg_enumerateAllKeysUsingBlock:^(NSString *key, BOOL *stop) {
+    [self sg_enumerateAllKeysUsingBlock:^(NSString *_key, BOOL *stop) {
         // 1. key值处理 去除下滑线
-        NSString * key_ = nil;
-        if ([key hasPrefix:@"_"]) { // “_”下划线处理
-            key_ = [key substringFromIndex:1];
+        NSString * key = nil;
+        if ([_key hasPrefix:@"_"]) { // “_”下划线处理
+            key = [_key substringFromIndex:1];
         }else {
-            key_ = key;
+            key = _key;
         }
         
         // 1.1 key值忽略处理
         for (NSString *ignoreKey in ignoreKeys) {
-            if([ignoreKey isEqualToString:key] || [ignoreKey isEqualToString:key_]){
+            if([ignoreKey isEqualToString:_key] || [ignoreKey isEqualToString:key]){
                 
                 return;
             }
@@ -218,29 +250,26 @@ static  BOOL isCahe ;
         // 2. 安全地获取对象的value
         id value = nil;
         @try {
-            value = [self valueForKey:key];
+            value = [self valueForKey:_key];
         } @catch (NSException *exception) {
 #ifdef DEBUG
-            NSLog(@"该属性 %@ 暂不支持valueForKey:\nuserInfo:%@",key_,exception);
+            NSLog(@"该属性 %@ 暂不支持valueForKey:\nuserInfo:%@",key,exception);
 #endif
-        } @finally {
-            
         }
         
         
         // 3.字典空值校验
-        if (!value) {
-            return;
-        }
+        if (!value) return;
+        
         // 将子目录转化为字典数组
         value = [value sg_keyValuesWithIgnoreKey:ignoreKeys];
         
         // 4. 获取字典中value的key 与对象名称对应关系 对象的key与属性不一样（如：字典为id 模型为：ID） 映射字典 （属性名称与字典key值映射）
-        NSString *mapKey = [self.class getKeyMapWithIvarName:key] ? : [self.class getKeyMapWithIvarName:key_];
-        NSString *dictValueKey = mapKey ? : key_;
+        NSString *mapKey = keyMap[_key] ? : keyMap[key];
+        NSString *dictValueKey = mapKey ? : key;
         
         // 5. 判断是否是二级模型  获取到二级模型class 调用sg_objectWithKeyValues:方法 （二级模型映射字典）
-        Class subClass = [self.class getClassWithIvarName:key] ? : [self.class getClassWithIvarName:key_];
+        Class subClass = [classMap sg_classForKey:_key] ? :  [classMap sg_classForKey:key];
         
         if (subClass) {
             id subObject = [value sg_keyValuesWithIgnoreKey:ignoreKeys];
@@ -289,73 +318,25 @@ static  BOOL isCahe ;
     if ([self isKindOfClass:[NSString class]]) {
         NSError *error = nil;
         id dictionary = [NSJSONSerialization JSONObjectWithData:[((NSString *)self) dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
-        return error ? self : dictionary;
+        return error ? nil : dictionary;
     }else if ([self isKindOfClass:[NSData class]]) {
         NSError *error = nil;
         id dictionary =  [NSJSONSerialization JSONObjectWithData:(NSData *)self options:kNilOptions error:&error];
-        return error ? self : dictionary;
+        return error ? nil : dictionary;
+    } else {
+        id dictionary = [self sg_keyValues];
+        
+        return  [dictionary isKindOfClass:NSDictionary.class] ? dictionary : nil;
     }
-    
-    return [self sg_keyValues];
 }
-
-#pragma mark - 设置映射关系
-// 获取映射类
-+ (Class)getClassWithIvarName:(NSString *)ivarName {
-    NSDictionary *classMap = [self sg_getModelClassForIvarNameMapDict];
-    id className =  classMap[ivarName];
-    if (![className isKindOfClass:[NSString class]]) {
-        return className;
-    }
-    return  NSClassFromString(className);
-}
-
-// 获取映射key
-+ (NSString *)getKeyMapWithIvarName:(NSString *)ivarName {
-    NSDictionary *keyMap = [self sg_getDictionarrayKeyForIvarNameMapDict];
-    return keyMap[ivarName];
-}
-
-
+#pragma mark - SGExtentionProtocol
 // 获取二级模型映射字典
 + (NSDictionary *)sg_getModelClassForIvarNameMapDict {
-    return objc_getAssociatedObject(self, (__bridge const void *)(sg_ModelClassForIvarNameMapDict));
+    return nil;
 }
 
 // 获取属性名称与字典key值映射
 + (NSDictionary *)sg_getDictionarrayKeyForIvarNameMapDict {
-    return objc_getAssociatedObject(self, (__bridge const void *)(sg_DictKeyForIvarNameMapDict));
-}
-
-// 设置映射字典
-+ (void)sg_setKeyForIvarNameMapDict:(NSDictionary *)keyMap {
-    
-    NSMutableDictionary *dict = [[self sg_getDictionarrayKeyForIvarNameMapDict] mutableCopy];
-    
-    if (!dict) {
-        dict = [NSMutableDictionary dictionary];
-    }
-    
-    [keyMap enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-        [dict setObject:obj forKey:key];
-    }];
-    
-    objc_setAssociatedObject(self, (__bridge const void *)(sg_DictKeyForIvarNameMapDict), dict, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-// 设置模型映射字典
-+ (void)sg_setModelClassForIvarNameMapDict:(NSDictionary *)classMap {
-    
-    NSMutableDictionary *dict = [[self sg_getModelClassForIvarNameMapDict] mutableCopy];
-    
-    if (!dict) {
-        dict = [NSMutableDictionary dictionary];
-    }
-    
-    [classMap enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-        [dict setObject:obj forKey:key];
-    }];
-    
-    objc_setAssociatedObject(self, (__bridge const void *)(sg_ModelClassForIvarNameMapDict), dict, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    return nil;
 }
 @end

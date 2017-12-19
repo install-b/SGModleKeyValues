@@ -11,13 +11,12 @@
 
 @implementation SGSubObject
 
-+ (void)initialize {
-
-    [self sg_setKeyForIvarNameMapDict:@{@"nikeName" : @"nike_Name"}];
+#pragma mark - SG 建立映射关系
++ (NSDictionary *)sg_getDictionarrayKeyForIvarNameMapDict {
+    return @{@"nikeName" : @"nike_Name"};
 }
 
 #pragma mark - MJ 建立映射关系
-
 + (NSDictionary *)mj_replacedKeyFromPropertyName {
     return @{@"nikeName" : @"nike_Name"};
 }

@@ -10,12 +10,21 @@
 #import <UIKit/UIKit.h>
 
 @implementation NSString (StructValue)
-- (long long)unsignedLongLongValue { // 容错处理
+// 容错处理
+#pragma mark - number
+- (long long)unsignedLongLongValue {
     return llabs([self longLongValue]);
 }
 - (unsigned int)unsignedIntValue {
     return abs([self intValue]);
 }
+- (unsigned long long)unsignedIntegerValue {
+    return llabs([self unsignedLongLongValue]);
+}
+- (BOOL)charValue {
+    return [self intValue];
+}
+#pragma  struct
 - (CGSize)sizeValue {
     return CGSizeFromString(self);
 }
@@ -25,7 +34,11 @@
 - (CGRect)rectValue {
     return CGRectFromString(self);
 }
+- (NSRange)rangeValue {
+    return NSRangeFromString(self);
+}
 
+#pragma mark - values
 - (id)structValueWithName:(NSString *)structName {
     
     if ([structName isEqualToString:@"UIOffset"]) {
@@ -45,30 +58,7 @@
     }
     
     return nil;
-    //return [NSValue value:(__bridge const void * _Nonnull)(self) withObjCType:[structName cStringUsingEncoding:NSUTF8StringEncoding]];
 }
 
 @end
-//    if ([self containsString:@"{"] && [self containsString:@"}"]) {
-//
-//        NSRange range1 = [self rangeOfString:@"{"];
-//        NSRange range2 = [self rangeOfString:@"}"];
-//
-//        if (range1.location > range2.location) {
-//            return CGSizeZero;
-//        }
-//
-//        NSString *subSrting = [self substringWithRange:NSMakeRange(range1.location + 1, range2.location - range1.location - 1)];
-//
-//        NSArray *strArray = [subSrting componentsSeparatedByString:@","];
-//
-//        if (strArray.count < 2) {
-//            return CGSizeZero;
-//        }
-//
-//        CGFloat width  = [strArray[0] floatValue];
-//        CGFloat height = [strArray[1] floatValue];
-//        return CGSizeMake(width, height);
-//    }
-//
-//    return CGSizeZero;
+

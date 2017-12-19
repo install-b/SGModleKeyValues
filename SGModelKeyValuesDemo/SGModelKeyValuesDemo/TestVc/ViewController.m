@@ -8,7 +8,8 @@
 
 #import "ViewController.h"
 #import "SGSecondObject.h"
-#import <NSObject+ModelKeyValues.h>
+//#import <NSObject+ModelKeyValues.h>
+#import "NSObject+ModelKeyValues.h"
 #import <MJExtension.h>
 #import <YYModel.h>
 
@@ -53,17 +54,21 @@
     NSLog(@"%@",sgArrays);
     NSLog(@"%@",mjArrays);
     NSLog(@"%@",yyArrays);
-//    double time1 = CFAbsoluteTimeGetCurrent(); //记录开始时间
-//    id sgKeyValues = [sgArrays sg_keyValues];
-//    double time2 = CFAbsoluteTimeGetCurrent(); //记录结束时间
-//    id mjKeyValues = [sgArrays mj_keyValues];
-//    double time3 = CFAbsoluteTimeGetCurrent(); //记录结束时间
-//    id yyKeyValues = [sgArrays yy_modelToJSONObject];
-//    double time4 = CFAbsoluteTimeGetCurrent(); //记录结束时间
-//    
-//    NSLog(@"SG %f",time2-time1);
-//    NSLog(@"MJ %f",time3-time2);
-//    NSLog(@"YY %f",time4-time3);
+    
+    double time11 = CFAbsoluteTimeGetCurrent(); //记录开始时间
+    id sgKeyValues = [sgArrays sg_keyValues];
+    double time12 = CFAbsoluteTimeGetCurrent(); //记录结束时间
+    id mjKeyValues = [sgArrays mj_keyValues];
+    double time13 = CFAbsoluteTimeGetCurrent(); //记录结束时间
+    id yyKeyValues = [sgArrays yy_modelToJSONObject];
+    double time14 = CFAbsoluteTimeGetCurrent(); //记录结束时间
+    
+    NSLog(@"SG1 %f",time12-time11);
+    NSLog(@"MJ1 %f",time13-time12);
+    NSLog(@"YY1 %f",time14-time13);
+    NSLog(@"%@",sgKeyValues);
+    NSLog(@"%@",mjKeyValues);
+    NSLog(@"%@",yyKeyValues);
     /*
      
      模型 --> 字典  MJ 转化失败

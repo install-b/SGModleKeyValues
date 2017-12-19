@@ -16,12 +16,12 @@
 /**
  *  这个数组中的属性名才会进行归档
  */
-+ (NSArray *)allowedCodingKeys;
++ (NSArray *)sg_allowedCodingKeys;
 
 /**
  *  这个数组中的属性名将会被忽略：不进行归档
  */
-+ (NSArray *)ignoredCodingKeys;
++ (NSArray *)sg_ignoredCodingKeys;
 
 @end
 
